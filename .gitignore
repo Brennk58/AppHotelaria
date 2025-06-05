@@ -2,6 +2,9 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.idea/
+src/view/resources/config.properties
+
 
 ### Eclipse ###
 .apt_generated

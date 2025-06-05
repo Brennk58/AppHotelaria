@@ -1,12 +1,36 @@
 package util;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
+
 public class Conexao {
-    private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://127.0.0.1:3306/projecthotel";
-    private String usuario = "dbaHotel";
-    private String senha = "dbaHotel123";
+    private String driver ;
+    private String url ;
+    private String usuario ;
+    private String senha ;
+
+    public Conexao() {
+        carrgarConfiguraçoes();
+
+    }
+    private void carrgarConfiguraçoes(){
+        Properties props = new Properties();
+        try (InputStream inputPropsConfig = getClass().getClassLoader().getResourceAsStream
+                ("config.properties")) {
+            props.load(inputPropsConfig);
+            driver = props.getProperty("driver");
+            url = props.getProperty("url");
+            usuario = props.getProperty("usuario");
+            senha = props.getProperty("senha");
+
+        }
+        catch (IOException erro){
+            System.out.println("Erro ao carregar configurações: "+ erro.getMessage());
+        }
+    }
 
     public Connection conectar() {
         Connection condb = null;
