@@ -12,12 +12,12 @@ public class TesteConexaoDB {
             System.out.println("Conexão estabelecida com sucesso!");
             try {
                 /*UsuariosDAO usuarioDAO = new UsuariosDAO();
-                usuarioDAO.inserirUsuarios();
-                System.out.println("Usuario inserido com sucesso!");*/
+                usuarioDAO.pesquisarUsuario();
+                System.out.println("Usuario Pesquisado com sucesso!");*/
 
-                /*AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
-                adicionaisDAO.inserirAdicionais();
-                System.out.println("Adicionais inserido com sucesso!");*/
+                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
+                adicionaisDAO.pesquisarAdicionais();
+                System.out.println("Adicionais inserido com sucesso!");
 
                 /*ClientesDAO clientesDAO = new ClientesDAO();
                 clientesDAO.inserirClientes();
@@ -27,12 +27,12 @@ public class TesteConexaoDB {
                 quartosDAO.inserirQuartos();
                 System.out.println("Quarto inserido com sucesso!");*/
 
-                CargosDAO cargosDAO = new CargosDAO();
+                /*CargosDAO cargosDAO = new CargosDAO();
                 cargosDAO.inserirCargos();
-                System.out.println("Cargo inserido com sucesso!");
+                System.out.println("Cargo inserido com sucesso!");*/
 
                 condb.close();
-                System.out.println("Conexão esncerrada!");
+                System.out.println("Conexão encerrada!");
             } catch (Exception erro) {
                 System.out.println("Erro ao encerrar a conexão:" + erro.getMessage());
             }

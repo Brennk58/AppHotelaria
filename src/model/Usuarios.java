@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 public class Usuarios extends Pessoa {
    private int idUsuario;

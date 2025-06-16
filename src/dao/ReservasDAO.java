@@ -4,26 +4,29 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class ReservasDAO {
     private Conexao conexao = new Conexao();
 
-    public boolean inserirReservas(){
+    public boolean deletarReservas() {
         try {
-            Connection condb = conexao.conectar();
-            PreparedStatement novoReservas = condb.prepareStatement("INSERT INTO reserva () VALUES (?, ?, ?, ?);");
-            novoReservas.setString(1,"Breno");
-            novoReservas.setString(2,"");
-            novoReservas.setString(3,"Breno");
-            novoReservas.setString(4,"Breno");
-            int LinhaAfetada = novoReservas.executeUpdate();
-            return LinhaAfetada > 0;
-        }catch (Exception erro){
-            System.out.println("Erro ao inserir reserva:" + erro);
-            return false;
+            Connection conndb = conexao.conectar();
+            PreparedStatement removeReserva = conndb.prepareStatement
+                    ("DELETE FROM reservas id = ?;");
+            removeReserva.setInt(1, 1);
+            int linhaAfetada = removeReserva.executeUpdate();
 
+            conndb.close();
+            return linhaAfetada > 1;
+
+        } catch (Exception erro) {
+            System.out.println("Erro ao deleta reserva:" + erro);
+            return false;
         }
     }
+
+
 }
 
 
