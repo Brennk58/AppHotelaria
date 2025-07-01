@@ -1,6 +1,7 @@
 package dao;
 
 import com.mysql.cj.protocol.Resultset;
+import model.Usuarios;
 import util.Conexao;
 
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ public class UsuariosDAO {
 
             novoUsuario.setString(1, "Breno");
             novoUsuario.setString(2, "breno@gmail.com");
-            novoUsuario.setString(3, "Brennk");
+            novoUsuario.setString(3, "1234");
             novoUsuario.setInt(4, 1);
 
 
@@ -70,23 +71,24 @@ public class UsuariosDAO {
 
         }
     }
-    public void pesquisarUsuario() {
+    public boolean autenticarUsuario(Usuarios usuario) {
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement buscarUsuarios = condb.prepareStatement("SELECT nome, email" + " FROM usuarios WHERE role_id = ?");
+            PreparedStatement stmt = condb.prepareStatement("SELECT nome " + " FROM usuarios WHERE email = ? AND senha = md5(?);");
 
-            buscarUsuarios.setInt(1, 1);
-            ResultSet resultado = buscarUsuarios.executeQuery();
+            stmt.setString(1, usuario.getEmail());
+            stmt.setString(2, usuario.getSenha());
+            ResultSet resultado = stmt.executeQuery();
 
-            while (resultado.next()) {
+            boolean acessoAutorizado = resultado.next();
                 String nome = resultado.getString("nome");
-                String email = resultado.getString("email");
-                System.out.println("Nome: " + nome + "\nEmail: " + email);
-            }
+                System.out.println("Olá, Seja Bem-vindo," + nome);
             condb.close();
+            return acessoAutorizado;
 
         } catch (Exception erro) {
             System.out.println("Erro ao pesquisar usuario: " + erro);
+            return false ;
 
         }
 

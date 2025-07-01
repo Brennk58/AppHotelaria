@@ -5,125 +5,106 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
-
 public class CadLogin extends Application {
-    private boolean senhavisivel = false;
+    private boolean senhaVisivel = false;
+
     @Override
     public void start(Stage janela) {
+        // Carregar imagens
+        ImageView photohotel = new ImageView(new Image("/view/resources/img/imagem.jpg"));
+        photohotel.setFitWidth(450);
+        photohotel.setFitHeight(500);
+        photohotel.setPreserveRatio(true);
 
+        Image iconUser = new Image(getClass().getResourceAsStream("/view/resources/img/iconUser.png"));
+        Image iconDatela = new Image(getClass().getResourceAsStream("/view/resources/img/logoUser.png"));
+        Image eyeOpen = new Image(getClass().getResourceAsStream("/view/resources/img/olhoAberto.png"));
+        Image eyeClosed = new Image(getClass().getResourceAsStream("/view/resources/img/olho.png"));
 
+        ImageView viewUserIcon = new ImageView(iconUser);
+        viewUserIcon.setFitWidth(100);
+        viewUserIcon.setFitHeight(100);
 
-        // Left side with image
-        ImageView photohotel = new ImageView(
-                new Image("/view/resources/img/imagem.jpg"));
-        Image iconUser = new Image(getClass().getResourceAsStream
-                ("/view/resources/img/iconUser.png"
-                ));
-        Image iconDatela = new Image(getClass().getResourceAsStream(
-                "/view/resources/img/logoUser.png"
-        ));
-        Image eyeOpen = new Image(getClass().getResourceAsStream(
-                "/view/resources/img/olhoAberto.png"
-        ));
-        Image eyeClosed = new Image(getClass().getResourceAsStream(
-                "/view/resources/img/olho.png"
-        ));
-        //Visualização da imagen
-        ImageView ViewEyeOpen = new  ImageView(eyeOpen);
-        ViewEyeOpen.setFitWidth(20);
-        ViewEyeOpen.setFitHeight(20);
+        ImageView viewEyeOpen = new ImageView(eyeOpen);
+        viewEyeOpen.setFitWidth(20);
+        viewEyeOpen.setFitHeight(20);
 
-        ImageView ViewEyeClose =  new ImageView(eyeClosed);
-        ViewEyeClose.setFitWidth(20);
-        ViewEyeClose.setFitHeight(20);
+        ImageView viewEyeClosed = new ImageView(eyeClosed);
+        viewEyeClosed.setFitWidth(20);
+        viewEyeClosed.setFitHeight(20);
 
-        ImageView viewconUser = new ImageView(iconUser);
-        viewconUser.setFitWidth(100);
-        viewconUser.setFitHeight(100);
-        viewconUser.setOpacity(1);
-
-        BorderPane mainPane = new BorderPane();
-        mainPane.setLeft(photohotel);
-
+        // Campos de entrada
         TextField txtEmail = new TextField();
+        txtEmail.setPromptText("Digite seu Email");
+        txtEmail.setMaxWidth(200);
 
         PasswordField senha = new PasswordField();
         senha.setPromptText("Digite sua Senha");
+        senha.setMaxWidth(250);
 
         TextField txtSenha = new TextField();
-        txtSenha.setPromptText("digite sua senha");
+        txtSenha.setPromptText("Digite sua Senha");
+        txtSenha.setMaxWidth(250);
         txtSenha.setVisible(false);
         txtSenha.setManaged(false);
 
-        Button toggleBtn =  new  Button();
-        toggleBtn.setGraphic(ViewEyeOpen);
-        toggleBtn.setGraphic(ViewEyeClose);
+        // Botão de mostrar/ocultar senha
+        Button toggleBtn = new Button();
+        toggleBtn.setGraphic(viewEyeOpen);
         toggleBtn.setStyle("-fx-background-color: transparent;");
 
         toggleBtn.setOnAction(evento -> {
-            // se a senha esta visivel, ou seja,senhaVisivel = true
-            if (senhavisivel){
-                // seta o texto de txtSenha (visivel) para senha (passwordField)
+            if (senhaVisivel) {
                 senha.setText(txtSenha.getText());
-                // Exibe novamente senha (passwordField) e o inclui no layout
                 senha.setVisible(true);
                 senha.setManaged(true);
-                // Oculta txtSenha (TextField) e o retira do layout para nao ocupar espaço
                 txtSenha.setVisible(false);
                 txtSenha.setManaged(false);
-                /*Trocar o icone  do butão para o olho aberto, indicando que a senha
-                * nao esta  */
-                toggleBtn.setGraphic(ViewEyeOpen);
-                //
-                senhavisivel = false;
-            }
-            else {
+                toggleBtn.setGraphic(viewEyeOpen);
+                senhaVisivel = false;
+            } else {
                 txtSenha.setText(senha.getText());
                 txtSenha.setVisible(true);
                 txtSenha.setManaged(true);
                 senha.setVisible(false);
                 senha.setManaged(false);
-                toggleBtn.setGraphic(ViewEyeClose);
-                senhavisivel = true;
+                toggleBtn.setGraphic(viewEyeClosed);
+                senhaVisivel = true;
             }
-
-
         });
 
+        // Botão de login
         Button loginButton = new Button("Login");
         loginButton.setStyle(
                 "-fx-background-color: #0000CD;" +
-                "-fx-text-fill: #FFFFFF; " +
-                "-fx-background-radius: 50px; " +
-                "-fx-cursor: hand;");
-        loginButton.setPrefHeight(10);
-        loginButton.setPrefWidth(140);
+                        "-fx-text-fill: #FFFFFF; " +
+                        "-fx-background-radius: 50px; " +
+                        "-fx-cursor: hand;");
+        loginButton.setPrefWidth(200);
 
+        // Layouts
+        HBox senhaBox = new HBox(10, senha, txtSenha, toggleBtn);
+        senhaBox.setAlignment(Pos.CENTER);
 
-        HBox BOX = new HBox(viewconUser,toggleBtn);
-        BOX.setSpacing(10);
-        BOX.setPadding(new Insets(20,20,20,65));
-        BOX.setAlignment(Pos.CENTER);
+        VBox formBox = new VBox(15, viewUserIcon, txtEmail, senhaBox, loginButton);
+        formBox.setAlignment(Pos.CENTER);
+        formBox.setPadding(new Insets(30));
 
-        VBox layout = new VBox(10,BOX,senha,loginButton);
-        layout.setAlignment(Pos.CENTER);
+        BorderPane mainPane = new BorderPane();
+        mainPane.setLeft(photohotel);
+        mainPane.setCenter(formBox);
 
-
-        mainPane.setCenter(layout);
-
-        Scene scene = new Scene(mainPane, 950, 600);
+        // Cena e palco
+        Scene scene = new Scene(mainPane, 800, 500);
         janela.setTitle("Grand Hotel");
         janela.getIcons().add(iconDatela);
         janela.setScene(scene);
@@ -131,10 +112,7 @@ public class CadLogin extends Application {
         janela.show();
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
 }
-
-

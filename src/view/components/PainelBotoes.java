@@ -37,13 +37,19 @@ public class PainelBotoes extends HBox {
 
         //criar um botão com texto e imagem(icone)
         Button btnCadastrar = new Button("Cadastrar",viewiconBtnCad);
-        btnCadastrar.setStyle("-fx-background-color: #D6C388FF ");
+        btnCadastrar.setStyle("-fx-background-color: #D6C388FF; -fx-text-fill: #FFFFFF; " +
+                "-fx-background-radius: 50px; " +
+                "-fx-cursor: hand;");
 
         Button btnAtualizar = new Button("Atualizar",viewiconBtnUp);
-        btnAtualizar.setStyle("-fx-background-color: #D6C388FF ");
+        btnAtualizar.setStyle("-fx-background-color: #D6C388FF; -fx-text-fill: #FFFFFF;" +
+                " -fx-background-radius: 50px;" +
+                " -fx-cursor: hand;");
 
         Button btnExcluir = new Button("Excluir",viewiconBtnDel);
-        btnExcluir.setStyle("-fx-background-color: #D6C388FF");
+        btnExcluir.setStyle("-fx-background-color: #D6C388FF; -fx-text-fill: #FFFFFF;" +
+                " -fx-background-radius: 50px;"  +
+                " -fx-cursor: hand;");
 
         setAlignment(Pos.CENTER);
         setSpacing(10);

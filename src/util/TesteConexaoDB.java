@@ -1,5 +1,6 @@
 package util;
-import dao.*;
+import controller.UsuariosController;
+
 
 import java.sql.Connection;
 
@@ -7,30 +8,16 @@ import java.sql.Connection;
 public class TesteConexaoDB {
     public static void main(String[] args){
         Conexao conexao = new Conexao();
+        UsuariosController usuariosController = new UsuariosController();
         Connection condb = conexao.conectar();
         if (condb != null) {
             System.out.println("Conexão estabelecida com sucesso!");
             try {
-                /*UsuariosDAO usuarioDAO = new UsuariosDAO();
-                usuarioDAO.pesquisarUsuario();
-                System.out.println("Usuario Pesquisado com sucesso!");*/
+                /*UsuariosDAO usuariosDAO = new UsuariosDAO();
+                usuariosDAO.inserirUsuarios();
+                System.out.println("Usario inserido com sucesso!");*/
 
-                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
-                adicionaisDAO.pesquisarAdicionais();
-                System.out.println("Adicionais inserido com sucesso!");
-
-                /*ClientesDAO clientesDAO = new ClientesDAO();
-                clientesDAO.inserirClientes();
-                System.out.println("Cliente inserido com sucesso!");*/
-
-                /*QuartosDAO quartosDAO = new QuartosDAO();
-                quartosDAO.inserirQuartos();
-                System.out.println("Quarto inserido com sucesso!");*/
-
-                /*CargosDAO cargosDAO = new CargosDAO();
-                cargosDAO.inserirCargos();
-                System.out.println("Cargo inserido com sucesso!");*/
-
+                usuariosController.verificarCredenciais("breno@gmail.com","1234");
                 condb.close();
                 System.out.println("Conexão encerrada!");
             } catch (Exception erro) {

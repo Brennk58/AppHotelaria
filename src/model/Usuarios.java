@@ -1,32 +1,19 @@
 package model;
 
 public class Usuarios extends Pessoa {
-   private int idUsuario;
+   private int role_id;
     private String email, senha;
 
 
-    public Usuarios(String nome, String cpf, String email, String senha) {
-        super(nome, cpf);
-        this.email = email;
+    public Usuarios(String nome, String email, String senha,int role_id) {
+        super(nome,email);
         this.senha = senha;
+        this.role_id = role_id;
     }
-     public int getIdUsuario() {
-        return idUsuario;
-     }
-    public String getEmail() {
-        return email;
-    }
-    public String getSenha() {
-        return senha;
-    }
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+    public int getRole_id() {return role_id;}
+    public String getSenha() {return senha;}
+
+    public void setRole_id(int role_id) {this.role_id = role_id;}
+    public void setSenha(String senha) {this.senha = senha;}
 
 }
