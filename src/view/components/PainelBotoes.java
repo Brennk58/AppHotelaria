@@ -7,7 +7,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class PainelBotoes extends HBox {
-
+    public Button btnCadastrar = new Button("Cadastrar");
+    public  Button btnAtualizar = new Button("Atualizar");
+    public  Button btnExcluir = new Button("Excluir");
     public PainelBotoes(){
         Image iconBtnCad = new Image(getClass().getResourceAsStream
                 ("/view/resources/img/icons8-mais-48.png"

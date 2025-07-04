@@ -27,6 +27,10 @@ public class CadCliente extends Application {
         Image iconUser = new Image(getClass().getResourceAsStream
                 ("/img/logoUser.png"
                 ));
+        /*Image iconsSair = new Image(getClass().getResourceAsStream("view/resources/img/portaB.png"));
+
+        Button buttonSair = new Button("view/resources/img/portaB.png");
+        buttonSair.setStyle("-fx-background-color: #0000CD;");*/
 
         //para mostrar os bostoes laterais
         BorderPane mainpane = new BorderPane();
@@ -37,6 +41,7 @@ public class CadCliente extends Application {
         viewiconUser.setFitWidth(40);
         viewiconUser.setFitHeight(40);
         viewiconUser.setOpacity(1);
+
 
         Label lblTitulo = new Label("Cadastro de Cliente");
         lblTitulo.setAlignment(Pos.CENTER);

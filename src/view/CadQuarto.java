@@ -1,5 +1,6 @@
 package view;
 
+import controller.QuartosController;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -45,7 +46,7 @@ public class CadQuarto extends Application {
         lblTitulo.setAlignment(Pos.CENTER);
         lblTitulo.setStyle("-fx-font-size: 30px; -fx-font-weight: bold");
 
-        Label lblsubtitulo = new Label("Adicione as Informações do Quarto");
+        Label lblsubtitulo = new Label("Adicione as Info rmações do Quarto");
         lblsubtitulo.setAlignment(Pos.CENTER);
         lblsubtitulo.setStyle("-fx-font-size: 12px; -fx-font-weight: bold");
 
@@ -62,13 +63,13 @@ public class CadQuarto extends Application {
         TextField txtPreco = criarMascaraCampo("R$###,##");
 
         Label lblSol = new Label("Cama de Solterio");
-        Spinner spinnerQuantidadeSolteiro = new Spinner(0,3,0);
+        Spinner <Integer> spinnerQuantidadeSolteiro = new Spinner(0,3,0);
         spinnerQuantidadeSolteiro.setStyle("-fx-background-color: #D6C388FF;" +
                 " -fx-border-width: 2px; -fx-border-radius: 5px;");
         spinnerQuantidadeSolteiro.setMaxWidth(100);
 
         Label lblCasal = new Label("Cama de Casal");
-        Spinner spinnerQuantidadeCasal = new Spinner(0,2,0);
+        Spinner <Integer>spinnerQuantidadeCasal = new Spinner(0,2,0);
         spinnerQuantidadeCasal.setStyle("-fx-background-color: #D6C388FF;" +
                 " -fx-border-width: 2px; -fx-border-radius: 5px;");
         spinnerQuantidadeCasal.setMaxWidth(100);
@@ -82,7 +83,7 @@ public class CadQuarto extends Application {
         ComboBox<String> BoxDisponivel = new ComboBox<>();
         BoxDisponivel.setPromptText("Disponivel");
         BoxDisponivel.setStyle("-fx-background-color: #D6C388FF ");
-        BoxDisponivel.getItems().addAll("Sim","Nâo");
+        BoxDisponivel.getItems().addAll("Disponivel","Indisponivel");
 
 
         GridPane FormGrid = new GridPane();
@@ -122,6 +123,31 @@ public class CadQuarto extends Application {
         janela.setScene(scene);
         janela.setResizable(false);
         janela.show();
+
+        buttons.btnCadastrar.setOnAction(evento -> {
+            String nome = txtNome.getText();
+            String numero = txtNumero.getText();
+            double preco = Double.parseDouble(txtPreco.getText());
+            int qntsolt = spinnerQuantidadeSolteiro.getValue();
+            int qntcasal = spinnerQuantidadeCasal.getValue();
+
+            String disponivel = (String) BoxDisponivel.getSelectionModel().getSelectedItem();
+
+            boolean isDisponivel;
+            if (disponivel.equals("Disponivel")){
+                isDisponivel = true;
+            }else {
+                isDisponivel = false;
+            }
+            QuartosController quartosController = new QuartosController();
+            boolean sucessoQuartos = quartosController.verificarInforQuartos(nome,numero,qntcasal,qntsolt,preco,isDisponivel);
+            if (sucessoQuartos){
+                System.out.println("Cadastro efetuado com sucesso!");
+            }else {
+                System.out.println("Não foi possivel cadastrar o quartos");
+            }
+
+        });
         
 
     }

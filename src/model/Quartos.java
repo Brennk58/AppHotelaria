@@ -3,15 +3,16 @@ package model;
 public class Quartos {
     int idQuarto;
     String nome, numero;
-    double  qtd_cama_casal, qtd_cama_solteiro, preco;
+    int  qtd_cama_casal, qtd_cama_solteiro;
+    double  preco;
     boolean disponivel;
 
-    public Quartos(int idQuarto, String nome, String numero, double qtd_cama_casal, double qtd_cama_solteiro, boolean disponivel) {
-        this.idQuarto = idQuarto;
+    public Quartos( String nome, String numero, int qtd_cama_casal, int qtd_cama_solteiro ,double preco, boolean disponivel) {
         this.nome = nome;
         this.numero = numero;
         this.qtd_cama_casal = qtd_cama_casal;
         this.qtd_cama_solteiro = qtd_cama_solteiro;
+        this.preco = preco;
         this.disponivel = disponivel;
     }
     public int getIdQuarto() {
@@ -24,10 +25,10 @@ public class Quartos {
     public String getNumero() {
         return numero;
     }
-    public double getQtd_cama_casal() {
+    public int getQtd_cama_casal() {
         return qtd_cama_casal;
     }
-    public double getQtd_cama_solteiro() {
+    public int getQtd_cama_solteiro() {
         return qtd_cama_solteiro;
     }
     public double getPreco() {
@@ -45,10 +46,10 @@ public class Quartos {
     public void setNumero(String numero) {
         this.numero = numero;
     }
-    public void setQtd_cama_casal(double qtd_cama_casal) {
+    public void setQtd_cama_casal(int qtd_cama_casal) {
         this.qtd_cama_casal = qtd_cama_casal;
     }
-    public void setQtd_cama_solteiro(double qtd_cama_solteiro) {
+    public void setQtd_cama_solteiro(int qtd_cama_solteiro) {
         this.qtd_cama_solteiro = qtd_cama_solteiro;
     }
     public void setPreco(double preco) {
